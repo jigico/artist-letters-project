@@ -1,4 +1,4 @@
-import Layout from "components/Layout";
+import Layout from "components/Layout/Layout";
 import Detail from "pages/Detail";
 import Home from "pages/Home";
 import React from "react";
