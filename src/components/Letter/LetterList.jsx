@@ -1,13 +1,13 @@
 import React from 'react'
-import dummy from 'shared/fakeData.json'
 import LetterItem from './LetterItem';
 import { LetterContainer } from './LetterStyles';
 
-export default function LetterList() {  
+export default function LetterList({data}) {
+  console.log('렌더링 됨');
   return (
     <LetterContainer>
       {
-        dummy.map((item) => {
+        data.map((item) => {
           return <LetterItem key={item.id} data={item} />
         })
       }
