@@ -5,7 +5,9 @@ import { HeaderContainer } from './HeaderStyles'
 export default function Header() {
   return (
     <HeaderContainer>
-      <Link to='./'>ARTIST</Link>
+      <h1>
+        <Link to='./'>ARTIST</Link>
+      </h1>
     </HeaderContainer>
   )
 }
