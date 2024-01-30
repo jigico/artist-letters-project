@@ -35,4 +35,5 @@ export const SelectStyle = styled.select`
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 5px;
+  font-family: inherit;
 `;
