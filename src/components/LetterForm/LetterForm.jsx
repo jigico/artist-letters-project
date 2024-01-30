@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormContainer, LetterInput, LetterLabel, LetterTextarea } from './LetterFormStyles'
+import Button from 'components/Button/Button'
 
 export default function LetterForm() {
   return (
@@ -8,7 +9,7 @@ export default function LetterForm() {
       <LetterInput type="text" id="name" />
       <LetterLabel htmlFor="contents">내용</LetterLabel>
       <LetterTextarea name="contents" id="contents" cols="30" rows="10"></LetterTextarea>
-      <button>등록</button>
+      <Button>등록</Button>
     </FormContainer>
   )
 }
