@@ -1,11 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import data from '../shared/fakeData.json'
 
 export default function Detail() {
+  const params = useParams();
+  const findData = data.find((item) => item.id === params.id)
+
   return (
     <>
-      <div>Detail</div>
-      <Link to='/'>home 이동</Link>
+      {findData.content}
     </>
   )
 }
