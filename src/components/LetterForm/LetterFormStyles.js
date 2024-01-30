@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const FormContainer = styled.form`
   margin: 20px auto;
   width: 500px;
+  max-width: 85%;
 `;
 export const LetterLabel = styled.label`
   margin: 10px 0;
