@@ -132,3 +132,7 @@ input,
 textarea {
   box-sizing: border-box;
 }
+button,
+input[type="button"] {
+  cursor: pointer;
+}
