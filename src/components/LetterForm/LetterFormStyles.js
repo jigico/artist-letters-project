@@ -9,7 +9,7 @@ export const LetterLabel = styled.label`
   display: block;
 `;
 export const LetterInput = styled.input`
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 10px;
   width: 100%;
   display: block;
@@ -18,7 +18,7 @@ export const LetterInput = styled.input`
   font-family: inherit;
 `;
 export const LetterTextarea = styled.textarea`
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 10px;
   width: 100%;
   display: block;
@@ -26,4 +26,12 @@ export const LetterTextarea = styled.textarea`
   border-radius: 5px;
   resize: none;
   font-family: inherit;
+`;
+export const SelectStyle = styled.select`
+  margin-bottom: 15px;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 `;
