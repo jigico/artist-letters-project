@@ -50,8 +50,7 @@ export default function LetterForm({data, setData, localKey}) {
   const saveLetter = (name, contents) => {
     const id = uuidv4();
     const date = new Date();
-    //이전 데이터 체크 - 이전 데이터 없으면 빈 배열로 셋팅
-    const newDataArr = data !== null ? data : []; //TODO useEffect로 사용할 수 있을지 확인 필요.
+    const newDataArr = data; 
     
     const newDataObj = {
       createdAt: date.toLocaleString(),
