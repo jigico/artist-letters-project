@@ -1,15 +1,15 @@
-import React from 'react'
-import { MemberItem, MemberThumbButton, MemberThumbnail } from './MemberStyles'
+import React from "react";
+import { MemberItem, MemberThumbButton, MemberThumbnail } from "./MemberStyles";
 
-export default function Member({data}) {
+export default function Member({ data, onClickHandler }) {
   return (
-    <MemberItem>
+    <MemberItem onClick={onClickHandler}>
       <MemberThumbnail>
-        <MemberThumbButton type='button'>
+        <MemberThumbButton type="button">
           <img src={data.thumbnail} alt={`${data.artist} 썸네일`} />
         </MemberThumbButton>
       </MemberThumbnail>
       <strong>{data.artist}</strong>
     </MemberItem>
-  )
+  );
 }
