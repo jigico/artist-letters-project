@@ -3,7 +3,6 @@ import LetterItem from './LetterItem';
 import { LetterContainer } from './LetterStyles';
 
 export default function LetterList({data}) {
-  console.log('렌더링 됨');
   return (
     <LetterContainer>
       {
