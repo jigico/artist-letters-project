@@ -7,8 +7,8 @@ import { ButtonBox, StyledButton } from "components/Button/ButtonStyles";
 
 export default function LetterForm({ data, setData, localKey }) {
   const [selected, setSelected] = useState("");
-  const nameRef = useRef("");
-  const contentsRef = useRef("");
+  const nameRef = useRef(null);
+  const contentsRef = useRef(null);
 
   //폼 이벤트
   const formHandler = (e) => {
@@ -45,25 +45,36 @@ export default function LetterForm({ data, setData, localKey }) {
     setSelected(e.target.value);
   };
 
+  const findMember = () => {
+    const findData = memberData.find((item) => {
+      return item.id === Number(selected);
+    });
+    return findData.artist;
+  };
+
   //등록 기능
   const saveLetter = (name, contents) => {
     const id = uuidv4();
     const date = new Date();
+    const artist = findMember();
+
     const newDataArr = data;
+    const pushDataArr = data[selected] ? data[selected] : [];
 
     const newDataObj = {
       createdAt: date.toLocaleString(),
       nickname: name,
       avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/36.jpg",
       content: contents,
-      writedTo: selected,
+      writedTo: artist,
       id
     };
-
-    newDataArr.push(newDataObj);
+    pushDataArr.push(newDataObj);
+    newDataArr[selected] = pushDataArr;
+    console.log(newDataArr);
     localStorage.setItem(localKey, JSON.stringify(newDataArr));
     //TODO 내림차순
-    setData([...newDataArr]);
+    setData({ ...newDataArr });
   };
 
   return (
@@ -74,7 +85,7 @@ export default function LetterForm({ data, setData, localKey }) {
       <LetterLabel htmlFor="contents">내용</LetterLabel>
       <LetterTextarea name="contents" id="contents" cols="30" rows="10" maxLength="70" ref={contentsRef}></LetterTextarea>
       <ButtonBox>
-        <StyledButton display={true}>등록</StyledButton>
+        <StyledButton display={"true"}>등록</StyledButton>
       </ButtonBox>
     </FormContainer>
   );
