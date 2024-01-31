@@ -12,7 +12,6 @@ export default function MemberList({ memberId, setMemberId }) {
     <MemberListContainer>
       {memberData.map((item) => {
         const id = item.id;
-        console.log(typeof id, typeof memberId);
         return <Member key={item.id} data={item} memberId={memberId} onClickHandler={() => viewList(id)} isActive={memberId === id ? "true" : "false"} />;
       })}
     </MemberListContainer>

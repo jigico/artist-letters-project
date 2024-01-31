@@ -71,7 +71,6 @@ export default function LetterForm({ data, setData, localKey }) {
     };
     pushDataArr.push(newDataObj);
     newDataArr[selected] = pushDataArr;
-    console.log(newDataArr);
     localStorage.setItem(localKey, JSON.stringify(newDataArr));
     //TODO 내림차순
     setData({ ...newDataArr });
