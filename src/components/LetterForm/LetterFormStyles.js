@@ -4,6 +4,7 @@ export const FormContainer = styled.form`
   margin: 20px auto;
   width: 500px;
   max-width: 85%;
+  font-size: 16px;
 `;
 export const LetterLabel = styled.label`
   margin: 10px 0;
@@ -16,7 +17,7 @@ export const LetterInput = styled.input`
   display: block;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-family: inherit;
+  font: inherit;
 `;
 export const LetterTextarea = styled.textarea`
   margin-bottom: 15px;
@@ -26,7 +27,7 @@ export const LetterTextarea = styled.textarea`
   border: 1px solid #ddd;
   border-radius: 5px;
   resize: none;
-  font-family: inherit;
+  font: inherit;
 `;
 export const SelectStyle = styled.select`
   margin-bottom: 15px;
@@ -35,5 +36,5 @@ export const SelectStyle = styled.select`
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-family: inherit;
+  font: inherit;
 `;
