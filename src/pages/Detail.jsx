@@ -13,7 +13,6 @@ export default function Detail() {
   //id랑 일치하는 데이터 찾기
   for (const value of Object.values(data)) {
     for (let i = 0; i < value.length; i++) {
-      console.log(value[i]);
       if (value[i].id === params.id) {
         findData = value[i];
         break;
@@ -21,5 +20,5 @@ export default function Detail() {
     }
   }
 
-  return <LetterContent data={findData} setData={setData} />;
+  return <LetterContent data={findData} setData={setData} initial={initial} />;
 }

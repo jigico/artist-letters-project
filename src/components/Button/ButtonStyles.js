@@ -8,7 +8,7 @@ export const ButtonBox = styled.div`
   gap: 10px;
 `;
 export const StyledButton = styled.button`
-  display: ${(props) => (props.display ? "block" : "none")};
+  display: ${(props) => (props.display === "true" ? "block" : "none")};
   height: 25px;
   color: #fff;
   background-color: #0066ff;
