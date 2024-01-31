@@ -3,15 +3,17 @@ import { memberData } from "shared/memberData";
 import Member from "./Member";
 import { MemberListContainer } from "./MemberStyles";
 
-export default function MemberList({ setMemberId }) {
+export default function MemberList({ memberId, setMemberId }) {
   const viewList = (id) => {
     setMemberId(id);
   };
+
   return (
     <MemberListContainer>
       {memberData.map((item) => {
-        let id = item.id;
-        return <Member key={item.id} data={item} onClickHandler={() => viewList(id)} />;
+        const id = item.id;
+        console.log(typeof id, typeof memberId);
+        return <Member key={item.id} data={item} memberId={memberId} onClickHandler={() => viewList(id)} isActive={memberId === id ? "true" : "false"} />;
       })}
     </MemberListContainer>
   );

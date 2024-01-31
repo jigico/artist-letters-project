@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <LetterForm data={data} setData={setData} localKey={LOCAL_KEY} />
-      <MemberList setMemberId={setMemberId} />
+      <MemberList memberId={memberId} setMemberId={setMemberId} />
       <LetterList data={data} memberId={memberId} setMemberId={setMemberId} />
     </>
   );

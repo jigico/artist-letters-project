@@ -19,16 +19,15 @@ export const MemberThumbButton = styled.button`
   background: transparent;
   color: transparent;
   border: none;
+  transition: all 0.3s;
+  filter: ${(props) => (props.isActive === "true" ? "unset" : "grayscale(1)")};
+
   > img {
     display: block;
-    transition: all 0.3s;
-    filter: grayscale(1);
   }
   &:hover,
   &:focus {
-    img {
-      filter: unset;
-    }
+    filter: unset;
   }
 `;
 export const MemberItem = styled.li`
