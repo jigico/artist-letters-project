@@ -115,7 +115,7 @@ export default function LetterContent({ data, setData }) {
           <LetterDate>{data.createdAt}</LetterDate>
         </div>
       </LetterTopArea>
-      <LetterTextarea cols="30" rows="5" value={content} onChange={changeHandler} maxLength="80" ref={contentRef} readOnly></LetterTextarea>
+      <LetterTextarea cols="30" rows="5" value={content} onChange={changeHandler} maxLength="80" ref={contentRef} readOnly placeholder="최대 80자까지 입력할 수 있습니다."></LetterTextarea>
       <ButtonBox>
         <Button clickHandler={editTextarea} display={changeButtonVisible} variant="success">
           수정

@@ -82,9 +82,9 @@ export default function LetterForm({ data, setData, localKey }) {
     <FormContainer onSubmit={formHandler}>
       <LetterSelect id="artistSelect" onChangeHandler={(e) => onChangeHandler(e)} memberData={memberData}></LetterSelect>
       <LetterLabel htmlFor="name">닉네임</LetterLabel>
-      <LetterInput type="text" id="name" name="name" ref={nameRef} maxLength="10" />
+      <LetterInput type="text" id="name" name="name" ref={nameRef} maxLength="10" placeholder="최대 10자까지 입력할 수 있습니다." />
       <LetterLabel htmlFor="contents">내용</LetterLabel>
-      <LetterTextarea name="contents" id="contents" cols="30" rows="10" maxLength="70" ref={contentsRef}></LetterTextarea>
+      <LetterTextarea name="contents" id="contents" cols="30" rows="10" maxLength="80" ref={contentsRef} placeholder="최대 80자까지 입력할 수 있습니다."></LetterTextarea>
       <ButtonBox>
         <Button display={"true"} variant="success">
           등록
