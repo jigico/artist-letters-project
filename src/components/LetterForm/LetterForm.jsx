@@ -14,6 +14,7 @@ export default function LetterForm() {
   const [selected, setSelected] = useState("");
   const nameRef = useRef(null);
   const contentsRef = useRef(null);
+  const selectRef = useRef(null);
 
   //폼 이벤트
   const formHandler = (e) => {
@@ -24,7 +25,7 @@ export default function LetterForm() {
     //유효성 검사
     if (!selected.trim()) {
       alert("아티스트를 선택해주세요");
-      //TODO: useRef 로 포커스 이동
+      selectRef.current.focus();
       return;
     }
     if (!name.trim()) {
@@ -83,7 +84,7 @@ export default function LetterForm() {
 
   return (
     <FormContainer onSubmit={formHandler}>
-      <LetterSelect id="artistSelect" onChangeHandler={(e) => onChangeHandler(e)} memberData={memberData}></LetterSelect>
+      <LetterSelect id="artistSelect" onChangeHandler={(e) => onChangeHandler(e)} memberData={memberData} selectRef={selectRef}></LetterSelect>
       <LetterLabel htmlFor="name">닉네임</LetterLabel>
       <LetterInput type="text" id="name" name="name" ref={nameRef} maxLength="10" placeholder="최대 10자까지 입력할 수 있습니다." />
       <LetterLabel htmlFor="contents">내용</LetterLabel>
