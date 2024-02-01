@@ -70,12 +70,12 @@ export default function LetterContent({ data, setData }) {
       if (el["id"] === data.id) {
         deleteIdx = idx;
       }
-
-      LetterData[memberId].splice(deleteIdx, 1);
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
-      alert("삭제가 완료되었습니다.");
-      navigate("/");
     });
+
+    LetterData[memberId].splice(deleteIdx, 1);
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
+    alert("삭제가 완료되었습니다.");
+    navigate("/");
   };
 
   const changeHandler = (e) => {
