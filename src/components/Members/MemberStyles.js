@@ -20,7 +20,7 @@ export const MemberThumbButton = styled.button`
   color: transparent;
   border: none;
   transition: all 0.3s;
-  filter: ${(props) => (props.isActive === "true" ? "unset" : "grayscale(1)")};
+  filter: ${(props) => (props.$isActive === "true" ? "unset" : "grayscale(1)")};
 
   > img {
     display: block;
