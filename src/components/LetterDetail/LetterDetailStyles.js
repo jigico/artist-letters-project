@@ -25,7 +25,6 @@ export const UserThumb = styled.div`
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #eee;
 
   & img {
     width: 100%;

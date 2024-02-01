@@ -5,6 +5,7 @@ import { memberData } from "shared/memberData";
 import { v4 as uuidv4 } from "uuid";
 import { ButtonBox } from "components/Button/ButtonStyles";
 import Button from "components/Button/Button";
+import userThumb from "../../assets/img/user.png";
 
 export default function LetterForm({ data, setData, localKey }) {
   const [selected, setSelected] = useState("");
@@ -65,7 +66,7 @@ export default function LetterForm({ data, setData, localKey }) {
     const newDataObj = {
       createdAt: date.toLocaleString(),
       nickname: name,
-      avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/36.jpg",
+      avatar: userThumb,
       content: contents,
       writedTo: artist,
       id
