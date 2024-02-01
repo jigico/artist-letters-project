@@ -1,4 +1,5 @@
 import LetterContent from "components/LetterDetail/LetterContent";
+import { LetterContext } from "context/LetterContext";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -20,5 +21,9 @@ export default function Detail() {
     }
   }
 
-  return <LetterContent data={findData} setData={setData} initial={initial} />;
+  return (
+    <LetterContext.Provider value={{ findData, setData }}>
+      <LetterContent />
+    </LetterContext.Provider>
+  );
 }

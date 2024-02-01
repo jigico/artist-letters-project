@@ -1,11 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { ButtonBox, LetterContentItem, LetterDate, LetterTopArea, UserName, UserThumb } from "./LetterDetailStyles";
 import { LetterTextarea } from "components/LetterForm/LetterFormStyles";
 import { memberData } from "shared/memberData";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
+import { LetterContext } from "context/LetterContext";
 
-export default function LetterContent({ data, setData }) {
+export default function LetterContent() {
+  const { findData: data, setData } = useContext(LetterContext);
+
   const [content, setContent] = useState(data.content);
   const contentRef = useRef(null);
   const [changeButtonVisible, setChangeButtonVisible] = useState("true");
@@ -23,7 +26,7 @@ export default function LetterContent({ data, setData }) {
     const findData = memberData.find((item) => item.artist === data.writedTo);
     return findData.id;
   };
-  console.log(data);
+
   //수정 영역 활성화 기능
   const editTextarea = () => {
     contentRef.current.focus();
