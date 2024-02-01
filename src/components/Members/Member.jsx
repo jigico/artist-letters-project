@@ -2,7 +2,6 @@ import React from "react";
 import { MemberItem, MemberThumbButton, MemberThumbnail } from "./MemberStyles";
 
 export default function Member({ data, onClickHandler, isActive }) {
-  // const isActive = memberId === data.id ? "true" : "false";
   return (
     <MemberItem onClick={onClickHandler}>
       <MemberThumbnail>
