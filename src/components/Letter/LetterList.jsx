@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import LetterItem from "./LetterItem";
 import { LetterContainer } from "./LetterStyles";
 import EmptyItem from "./EmptyItem";
+import { LetterContext } from "context/LetterContext";
 
-export default function LetterList({ data, memberId }) {
+export default function LetterList() {
+  const { data, memberId } = useContext(LetterContext);
   const letterData = data[memberId];
   if (letterData && letterData.length) {
     return (

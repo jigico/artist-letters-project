@@ -1,6 +1,7 @@
 import LetterList from "components/Letter/LetterList";
 import LetterForm from "components/LetterForm/LetterForm";
 import MemberList from "components/Members/MemberList";
+import { LetterContext } from "context/LetterContext";
 import React, { useState } from "react";
 
 export default function Home() {
@@ -10,10 +11,10 @@ export default function Home() {
   const [memberId, setMemberId] = useState(1);
 
   return (
-    <>
+    <LetterContext.Provider value={{ data, setData, memberId, setMemberId }}>
       <LetterForm data={data} setData={setData} localKey={LOCAL_KEY} />
       <MemberList memberId={memberId} setMemberId={setMemberId} />
-      <LetterList data={data} memberId={memberId} setMemberId={setMemberId} />
-    </>
+      <LetterList />
+    </LetterContext.Provider>
   );
 }
