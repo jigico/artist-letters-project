@@ -3,7 +3,7 @@ import { FormContainer, LetterInput, LetterLabel, LetterTextarea } from "./Lette
 import LetterSelect from "./LetterSelect";
 import { memberData } from "shared/memberData";
 import { v4 as uuidv4 } from "uuid";
-import { ButtonBox, StyledButton } from "components/Button/ButtonStyles";
+import { ButtonBox } from "components/Button/ButtonStyles";
 import Button from "components/Button/Button";
 
 export default function LetterForm({ data, setData, localKey }) {
