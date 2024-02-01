@@ -4,6 +4,7 @@ import LetterSelect from "./LetterSelect";
 import { memberData } from "shared/memberData";
 import { v4 as uuidv4 } from "uuid";
 import { ButtonBox, StyledButton } from "components/Button/ButtonStyles";
+import Button from "components/Button/Button";
 
 export default function LetterForm({ data, setData, localKey }) {
   const [selected, setSelected] = useState("");
@@ -84,7 +85,9 @@ export default function LetterForm({ data, setData, localKey }) {
       <LetterLabel htmlFor="contents">내용</LetterLabel>
       <LetterTextarea name="contents" id="contents" cols="30" rows="10" maxLength="70" ref={contentsRef}></LetterTextarea>
       <ButtonBox>
-        <StyledButton display={"true"}>등록</StyledButton>
+        <Button display={"true"} variant="success">
+          등록
+        </Button>
       </ButtonBox>
     </FormContainer>
   );

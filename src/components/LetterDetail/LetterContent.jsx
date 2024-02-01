@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
 import { ButtonBox, LetterContentItem, LetterDate, LetterTopArea, UserName, UserThumb } from "./LetterDetailStyles";
-// import Button from 'components/Button/Button'
 import { LetterTextarea } from "components/LetterForm/LetterFormStyles";
-import { StyledButton } from "components/Button/ButtonStyles";
 import { memberData } from "shared/memberData";
 import { useNavigate } from "react-router-dom";
+import Button from "components/Button/Button";
 
 export default function LetterContent({ data, setData }) {
   const [content, setContent] = useState(data.content);
@@ -118,18 +117,18 @@ export default function LetterContent({ data, setData }) {
       </LetterTopArea>
       <LetterTextarea cols="30" rows="5" value={content} onChange={changeHandler} maxLength="80" ref={contentRef} readOnly></LetterTextarea>
       <ButtonBox>
-        <StyledButton type="button" onClick={editTextarea} display={changeButtonVisible}>
+        <Button clickHandler={editTextarea} display={changeButtonVisible} variant="success">
           수정
-        </StyledButton>
-        <StyledButton type="button" onClick={editLetter} display={editButtonVisible}>
+        </Button>
+        <Button clickHandler={editLetter} display={editButtonVisible} variant="success">
           완료
-        </StyledButton>
-        <StyledButton type="button" onClick={deleteLetter} display={deleteButtonVisible}>
+        </Button>
+        <Button clickHandler={deleteLetter} display={deleteButtonVisible} variant="danger">
           삭제
-        </StyledButton>
-        <StyledButton type="button" onClick={cancelEditTextarea} display={cancelButtonVisible}>
+        </Button>
+        <Button clickHandler={cancelEditTextarea} display={cancelButtonVisible} variant="normal">
           취소
-        </StyledButton>
+        </Button>
       </ButtonBox>
     </LetterContentItem>
   );

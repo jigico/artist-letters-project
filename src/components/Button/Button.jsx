@@ -1,8 +1,10 @@
-import React from 'react'
-import { StyledButton } from './ButtonStyles'
+import React from "react";
+import { StyledButton, VARIANTS } from "./ButtonStyles";
 
-export default function Button({children}) {
+export default function Button({ children, clickHandler, display, variant }) {
   return (
-    <StyledButton>{children}</StyledButton>
-  )
+    <StyledButton onClick={clickHandler} display={display} variant={VARIANTS[variant]}>
+      {children}
+    </StyledButton>
+  );
 }
