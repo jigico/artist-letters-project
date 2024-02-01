@@ -24,7 +24,7 @@ export default function LetterContent({ data, setData }) {
     const findData = memberData.find((item) => item.artist === data.writedTo);
     return findData.id;
   };
-
+  console.log(data);
   //수정 영역 활성화 기능
   const editTextarea = () => {
     contentRef.current.focus();
@@ -59,23 +59,46 @@ export default function LetterContent({ data, setData }) {
       contentRef.current.focus();
       return;
     }
+
+    //수정할 데이터 조회
+    const memberId = findMember();
+    let updateIdx = null;
+    LetterData[memberId].forEach((el, idx) => {
+      if (el["id"] === data.id) {
+        updateIdx = idx;
+      }
+    });
+    let newData = data;
+    newData.content = content;
+
+    LetterData[memberId][updateIdx].content = content;
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
+    setData((prev) => {
+      return { ...prev, content: content };
+    });
+    setContent(content);
+    alert("수정이 완료되었습니다.");
+
+    //textarea 비활성화
+    contentRef.current.readOnly = true;
+    toggleVisible();
   };
 
   //삭제 기능
   const deleteLetter = () => {
     const memberId = findMember();
     let deleteIdx = null;
-    console.log(LetterData[memberId]);
     LetterData[memberId].forEach((el, idx) => {
       if (el["id"] === data.id) {
         deleteIdx = idx;
       }
     });
-
-    LetterData[memberId].splice(deleteIdx, 1);
-    localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
-    alert("삭제가 완료되었습니다.");
-    navigate("/");
+    if (window.confirm("정말 삭제하겠습니까?")) {
+      LetterData[memberId].splice(deleteIdx, 1);
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
+      alert("삭제가 완료되었습니다.");
+      navigate("/");
+    }
   };
 
   const changeHandler = (e) => {
@@ -85,7 +108,9 @@ export default function LetterContent({ data, setData }) {
   return (
     <LetterContentItem>
       <LetterTopArea>
-        <UserThumb>{/* <img src={data.avatar} alt={`${data.nickname} 썸네일`} /> */}</UserThumb>
+        <UserThumb>
+          <img src={data.avatar} alt={`${data.nickname} 썸네일`} />
+        </UserThumb>
         <div>
           <UserName>{data.nickname}</UserName>
           <LetterDate>{data.createdAt}</LetterDate>
