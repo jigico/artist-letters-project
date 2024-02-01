@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FormContainer, LetterInput, LetterLabel, LetterTextarea } from "./LetterFormStyles";
 import LetterSelect from "./LetterSelect";
 import { memberData } from "shared/memberData";
@@ -6,8 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 import { ButtonBox } from "components/Button/ButtonStyles";
 import Button from "components/Button/Button";
 import userThumb from "../../assets/img/user.png";
+import { LetterContext } from "context/LetterContext";
 
-export default function LetterForm({ data, setData, localKey }) {
+export default function LetterForm() {
+  const { data, setData, LOCAL_KEY } = useContext(LetterContext);
+
   const [selected, setSelected] = useState("");
   const nameRef = useRef(null);
   const contentsRef = useRef(null);
@@ -73,7 +76,7 @@ export default function LetterForm({ data, setData, localKey }) {
     };
     pushDataArr.push(newDataObj);
     newDataArr[selected] = pushDataArr;
-    localStorage.setItem(localKey, JSON.stringify(newDataArr));
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(newDataArr));
     //TODO 내림차순
     setData({ ...newDataArr });
   };
