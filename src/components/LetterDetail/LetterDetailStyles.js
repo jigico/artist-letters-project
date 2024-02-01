@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LetterContentItem = styled.div`
-  margin: 1rem auto;
+  margin: 1rem auto 3rem;
   padding: 1rem;
   max-width: 600px;
   box-shadow: 1px 1px 8px 1px #f1f1f1;
