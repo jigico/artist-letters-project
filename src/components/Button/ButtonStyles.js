@@ -20,14 +20,10 @@ export const ButtonBox = styled.div`
   gap: 10px;
 `;
 export const StyledButton = styled.button`
-  ${(props) => props.variant};
-
   padding: 5px 10px;
   display: ${(props) => (props.display === "true" ? "block" : "none")};
-
-  /* background-color: var(--button-bg-color, #0066ff); */
+  ${(props) => props.$variant};
   color: #fff;
-  /* background-color: #0066ff; */
   border-radius: 5px;
   border: none;
   font-family: inherit;
