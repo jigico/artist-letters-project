@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { memberData } from "shared/memberData";
 import Member from "./Member";
 import { MemberListContainer } from "./MemberStyles";
-import { LetterContext } from "context/LetterContext";
+import { MemberContext } from "context/MemberContext";
 
 export default function MemberList() {
-  const { memberId, setMemberId } = useContext(LetterContext);
+  const { memberId, setMemberId } = useContext(MemberContext);
+  const { memberData } = useContext(MemberContext);
 
   const viewList = (id) => {
     setMemberId(id);

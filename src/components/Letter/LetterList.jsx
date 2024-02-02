@@ -3,9 +3,12 @@ import LetterItem from "./LetterItem";
 import { LetterContainer } from "./LetterStyles";
 import EmptyItem from "./EmptyItem";
 import { LetterContext } from "context/LetterContext";
+import { MemberContext } from "context/MemberContext";
 
 export default function LetterList() {
-  const { data, memberId } = useContext(LetterContext);
+  const { data } = useContext(LetterContext);
+  const { memberId } = useContext(MemberContext);
+
   const letterData = data[memberId];
   if (letterData && letterData.length) {
     return (

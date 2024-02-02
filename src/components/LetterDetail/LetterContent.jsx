@@ -1,14 +1,14 @@
 import React, { useContext, useRef, useState } from "react";
 import { ButtonBox, LetterContentItem, LetterDate, LetterTopArea, UserName, UserThumb } from "./LetterDetailStyles";
 import { LetterTextarea } from "components/LetterForm/LetterFormStyles";
-import { memberData } from "shared/memberData";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
 import { LetterContext } from "context/LetterContext";
+import { MemberContext } from "context/MemberContext";
 
-export default function LetterContent() {
-  const { findData: data, setData } = useContext(LetterContext);
-
+export default function LetterContent({ data }) {
+  const { setData } = useContext(LetterContext);
+  const { memberData } = useContext(MemberContext);
   const [content, setContent] = useState(data.content);
   const contentRef = useRef(null);
   const [changeButtonVisible, setChangeButtonVisible] = useState("true");

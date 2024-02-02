@@ -1,13 +1,10 @@
 import LetterContent from "components/LetterDetail/LetterContent";
 import { LetterContext } from "context/LetterContext";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
 export default function Detail() {
-  const LOCAL_KEY = "letter"; //localStorage key
-  const initial = JSON.parse(localStorage.getItem(LOCAL_KEY));
-  const [data, setData] = useState(initial !== null ? initial : []); //TODO : 이전 데이터 체크를 useEffect 를 사용해야 하는건지 확인 필요
-
+  const { data } = useContext(LetterContext);
   const params = useParams();
   let findData = {};
 
@@ -21,9 +18,5 @@ export default function Detail() {
     }
   }
 
-  return (
-    <LetterContext.Provider value={{ findData, setData }}>
-      <LetterContent />
-    </LetterContext.Provider>
-  );
+  return <LetterContent data={findData} />;
 }
