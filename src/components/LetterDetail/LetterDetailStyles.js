@@ -8,6 +8,7 @@ export const LetterContentItem = styled.div`
   border-radius: 5px;
 
   & textarea {
+    min-height: 300px;
     border: none;
   }
   & textarea:read-only {
