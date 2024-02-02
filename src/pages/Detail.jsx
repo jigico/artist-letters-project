@@ -1,10 +1,10 @@
 import LetterContent from "components/LetterDetail/LetterContent";
-import { LetterContext } from "context/LetterContext";
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export default function Detail() {
-  const { data } = useContext(LetterContext);
+  const data = useSelector((state) => state.letter.data);
   const params = useParams();
   let findData = {};
 

@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import Member from "./Member";
 import { MemberListContainer } from "./MemberStyles";
-import { MemberContext } from "context/MemberContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setMemberId } from "../../redux/modules/member";
 
 export default function MemberList() {
-  const { memberId, setMemberId } = useContext(MemberContext);
-  const { memberData } = useContext(MemberContext);
+  const { memberData, memberId } = useSelector((state) => state.member);
+  const dispatch = useDispatch();
 
   const viewList = (id) => {
-    setMemberId(id);
+    dispatch(setMemberId(id));
   };
 
   return (

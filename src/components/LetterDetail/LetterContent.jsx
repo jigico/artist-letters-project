@@ -1,14 +1,17 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { ButtonBox, LetterContentItem, LetterDate, LetterTopArea, UserName, UserThumb } from "./LetterDetailStyles";
 import { LetterTextarea } from "components/LetterForm/LetterFormStyles";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
-import { LetterContext } from "context/LetterContext";
-import { MemberContext } from "context/MemberContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addLetter } from "../../redux/modules/letter";
 
 export default function LetterContent({ data }) {
-  const { setData } = useContext(LetterContext);
-  const { memberData } = useContext(MemberContext);
+  const { data: LetterData, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
+  const memberData = useSelector((state) => state.member.memberData);
+  const dispatch = useDispatch();
+
+  //전역으로 관리하지 않아도 되는 데이터 모음
   const [content, setContent] = useState(data.content);
   const contentRef = useRef(null);
   const [changeButtonVisible, setChangeButtonVisible] = useState("true");
@@ -16,12 +19,9 @@ export default function LetterContent({ data }) {
   const [deleteButtonVisible, setDeleteButtonVisible] = useState("true");
   const [cancelButtonVisible, setCancelButtonVisible] = useState("false");
 
-  const LOCAL_KEY = "letter";
-  const LetterData = JSON.parse(localStorage.getItem(LOCAL_KEY));
-
   const navigate = useNavigate();
 
-  //member 찾기
+  //수정할 member id 찾기
   const findMember = () => {
     const findData = memberData.find((item) => item.artist === data.writedTo);
     return findData.id;
@@ -34,7 +34,7 @@ export default function LetterContent({ data }) {
     toggleVisible();
   };
 
-  //수정 영역 비활성화 기능
+  //수정 취소 시 - 수정 영역 비활성화 기능
   const cancelEditTextarea = () => {
     contentRef.current.readOnly = true;
     setContent(data.content);
@@ -62,22 +62,22 @@ export default function LetterContent({ data }) {
       return;
     }
 
-    //수정할 데이터 조회
+    //수정할 데이터 id 조회
     const memberId = findMember();
     let updateIdx = null;
+
     LetterData[memberId].forEach((el, idx) => {
       if (el["id"] === data.id) {
         updateIdx = idx;
       }
     });
+
     let newData = data;
     newData.content = content;
 
     LetterData[memberId][updateIdx].content = content;
     localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
-    setData((prev) => {
-      return { ...prev, content: content };
-    });
+    dispatch(addLetter({ ...LetterData }));
     setContent(content);
     alert("수정이 완료되었습니다.");
 
@@ -88,8 +88,10 @@ export default function LetterContent({ data }) {
 
   //삭제 기능
   const deleteLetter = () => {
+    // 삭제할 데이터 id 조회
     const memberId = findMember();
     let deleteIdx = null;
+    //삭제할 데이터의 index 구하기
     LetterData[memberId].forEach((el, idx) => {
       if (el["id"] === data.id) {
         deleteIdx = idx;
@@ -98,11 +100,19 @@ export default function LetterContent({ data }) {
     if (window.confirm("정말 삭제하겠습니까?")) {
       LetterData[memberId].splice(deleteIdx, 1);
       localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
-      alert("삭제가 완료되었습니다.");
+
+      //TODO: localStorage로 삭제하고 메인으로 이동해서 이 화면에서는 렌더링이 되지 않아도 되는데...
+      //이 기능은 과연 필요할까
+      dispatch(addLetter({ ...LetterData }));
+
+      alert("삭제가 완료되었습니다. 메인 화면으로 이동합니다.");
       navigate("/");
+    } else {
+      alert("삭제를 취소하였습니다.");
     }
   };
 
+  //textarea 에 입력한 값 useState로 관리
   const changeHandler = (e) => {
     setContent(e.target.value);
   };

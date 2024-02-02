@@ -1,16 +1,17 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FormContainer, LetterInput, LetterLabel, LetterTextarea } from "./LetterFormStyles";
 import LetterSelect from "./LetterSelect";
 import { v4 as uuidv4 } from "uuid";
 import { ButtonBox } from "components/Button/ButtonStyles";
 import Button from "components/Button/Button";
 import userThumb from "../../assets/img/user.png";
-import { LetterContext } from "context/LetterContext";
-import { MemberContext } from "context/MemberContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addLetter } from "../../redux/modules/letter";
 
 export default function LetterForm() {
-  const { data, setData, LOCAL_KEY } = useContext(LetterContext);
-  const { memberData } = useContext(MemberContext);
+  const { data, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
+  const memberData = useSelector((state) => state.member.memberData);
+  const dispatch = useDispatch();
 
   const [selected, setSelected] = useState("");
   const nameRef = useRef(null);
@@ -47,11 +48,20 @@ export default function LetterForm() {
     e.target.reset();
   };
 
+  /**
+   * 중앙에서 관리 할 필요가 없을 것 같아서 useState 사용
+   * 선택한 아티스트의 option value 에 들어있는 값으로 useState 값 업데이트
+   * 레터 등록 시 사용
+   */
   //아티스트 셀렉트박스 이벤트
   const onChangeHandler = (e) => {
     setSelected(e.target.value);
   };
 
+  /**
+   * 선택한 아티스트의 이름 구하기
+   * 레터 등록 시 사용
+   */
   const findMember = () => {
     const findData = memberData.find((item) => {
       return item.id === Number(selected);
@@ -79,7 +89,7 @@ export default function LetterForm() {
     pushDataArr.push(newDataObj);
     newDataArr[selected] = pushDataArr;
     localStorage.setItem(LOCAL_KEY, JSON.stringify(newDataArr));
-    setData({ ...newDataArr });
+    dispatch(addLetter({ ...newDataArr }));
   };
 
   return (
