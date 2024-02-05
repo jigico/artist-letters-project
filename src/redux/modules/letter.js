@@ -15,8 +15,7 @@ const initial = JSON.parse(localStorage.getItem(LOCAL_KEY));
 //초깃값
 const initialState = {
   data: initial !== null ? initial : {},
-  localKey: LOCAL_KEY,
-  setData: ""
+  localKey: LOCAL_KEY
 };
 
 //리듀서
