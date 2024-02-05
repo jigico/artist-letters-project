@@ -50,3 +50,6 @@ export const ButtonBox = styled.div`
   align-items: center;
   gap: 10px;
 `;
+export const ArtistInfo = styled.div`
+  padding: 10px;
+`;
