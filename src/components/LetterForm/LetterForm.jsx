@@ -79,7 +79,7 @@ export default function LetterForm() {
     const pushDataArr = data[selected] ? data[selected] : [];
 
     const newDataObj = {
-      createdAt: date.toLocaleString(),
+      createdAt: date,
       nickname: name,
       avatar: userThumb,
       content: contents,
@@ -100,9 +100,7 @@ export default function LetterForm() {
       <LetterLabel htmlFor="contents">내용</LetterLabel>
       <LetterTextarea name="contents" id="contents" cols="30" rows="10" maxLength="80" ref={contentsRef} placeholder="최대 80자까지 입력할 수 있습니다."></LetterTextarea>
       <ButtonBox>
-        <Button display={"true"} variant="success">
-          등록
-        </Button>
+        <Button variant="success">등록</Button>
       </ButtonBox>
     </FormContainer>
   );

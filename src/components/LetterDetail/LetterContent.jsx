@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLetter } from "../../redux/modules/letter";
+import { getFormattedDate } from "util/date";
 
 export default function LetterContent({ data }) {
   const { data: LetterData, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
@@ -14,11 +15,7 @@ export default function LetterContent({ data }) {
   //전역으로 관리하지 않아도 되는 데이터 모음
   const [content, setContent] = useState(data.content);
   const contentRef = useRef(null);
-  const [changeButtonVisible, setChangeButtonVisible] = useState("true");
-  const [editButtonVisible, setEditButtonVisible] = useState("false");
-  const [deleteButtonVisible, setDeleteButtonVisible] = useState("true");
-  const [cancelButtonVisible, setCancelButtonVisible] = useState("false");
-
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
   //수정할 member id 찾기
@@ -31,22 +28,14 @@ export default function LetterContent({ data }) {
   const editTextarea = () => {
     contentRef.current.focus();
     contentRef.current.readOnly = false;
-    toggleVisible();
+    setIsEditing(true);
   };
 
   //수정 취소 시 - 수정 영역 비활성화 기능
   const cancelEditTextarea = () => {
     contentRef.current.readOnly = true;
     setContent(data.content);
-    toggleVisible();
-  };
-
-  //[공통] 버튼 display toggle 상태 변경
-  const toggleVisible = () => {
-    setChangeButtonVisible((prev) => (prev === "true" ? "false" : "true"));
-    setEditButtonVisible((prev) => (prev === "true" ? "false" : "true"));
-    setDeleteButtonVisible((prev) => (prev === "true" ? "false" : "true"));
-    setCancelButtonVisible((prev) => (prev === "true" ? "false" : "true"));
+    setIsEditing(false);
   };
 
   //수정 기능
@@ -83,7 +72,7 @@ export default function LetterContent({ data }) {
 
     //textarea 비활성화
     contentRef.current.readOnly = true;
-    toggleVisible();
+    setIsEditing(false);
   };
 
   //삭제 기능
@@ -125,24 +114,31 @@ export default function LetterContent({ data }) {
         </UserThumb>
         <div>
           <UserName>{data.nickname}</UserName>
-          <LetterDate>{data.createdAt}</LetterDate>
+          <LetterDate>{getFormattedDate(data.createdAt)}</LetterDate>
         </div>
       </LetterTopArea>
       <ArtistInfo>To {data.writedTo}</ArtistInfo>
       <LetterTextarea cols="30" rows="5" value={content} onChange={changeHandler} maxLength="80" ref={contentRef} readOnly placeholder="최대 80자까지 입력할 수 있습니다."></LetterTextarea>
       <ButtonBox>
-        <Button clickHandler={editTextarea} display={changeButtonVisible} variant="success">
-          수정
-        </Button>
-        <Button clickHandler={editLetter} display={editButtonVisible} variant="success">
-          완료
-        </Button>
-        <Button clickHandler={deleteLetter} display={deleteButtonVisible} variant="danger">
-          삭제
-        </Button>
-        <Button clickHandler={cancelEditTextarea} display={cancelButtonVisible} variant="normal">
-          취소
-        </Button>
+        {isEditing === true ? (
+          <>
+            <Button clickHandler={editLetter} variant="success">
+              완료
+            </Button>
+            <Button clickHandler={cancelEditTextarea} variant="normal">
+              취소
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button clickHandler={editTextarea} variant="success">
+              수정
+            </Button>
+            <Button clickHandler={deleteLetter} variant="danger">
+              삭제
+            </Button>
+          </>
+        )}
       </ButtonBox>
     </LetterContentItem>
   );
