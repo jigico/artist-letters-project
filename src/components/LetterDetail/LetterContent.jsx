@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { ButtonBox, LetterContentItem, LetterDate, LetterTopArea, UserName, UserThumb } from "./LetterDetailStyles";
+import { ArtistInfo, ButtonBox, LetterContentItem, LetterDate, LetterTopArea, UserName, UserThumb } from "./LetterDetailStyles";
 import { LetterTextarea } from "components/LetterForm/LetterFormStyles";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
@@ -128,6 +128,7 @@ export default function LetterContent({ data }) {
           <LetterDate>{data.createdAt}</LetterDate>
         </div>
       </LetterTopArea>
+      <ArtistInfo>To {data.writedTo}</ArtistInfo>
       <LetterTextarea cols="30" rows="5" value={content} onChange={changeHandler} maxLength="80" ref={contentRef} readOnly placeholder="최대 80자까지 입력할 수 있습니다."></LetterTextarea>
       <ButtonBox>
         <Button clickHandler={editTextarea} display={changeButtonVisible} variant="success">
