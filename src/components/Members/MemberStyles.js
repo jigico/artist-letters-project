@@ -24,6 +24,7 @@ export const MemberThumbButton = styled.button`
 
   > img {
     display: block;
+    width: 100%;
   }
   &:hover,
   &:focus {
