@@ -1,7 +1,14 @@
 import React from "react";
-import { MemberItem, MemberThumbButton, MemberThumbnail } from "./MemberStyles";
+import { CountStyle, MemberItem, MemberThumbButton, MemberThumbnail } from "./MemberStyles";
+import { useSelector } from "react-redux";
 
 export default function Member({ data, onClickHandler, isActive }) {
+  const letterData = useSelector((state) => state.letter.data);
+  let dataLength = 0;
+  if (letterData && letterData[data.id]) {
+    dataLength = letterData[data.id].length;
+  }
+
   return (
     <MemberItem onClick={onClickHandler}>
       <MemberThumbnail>
@@ -10,6 +17,7 @@ export default function Member({ data, onClickHandler, isActive }) {
         </MemberThumbButton>
       </MemberThumbnail>
       <strong>{data.artist}</strong>
+      <CountStyle>{dataLength}</CountStyle>
     </MemberItem>
   );
 }
