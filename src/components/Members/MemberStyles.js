@@ -34,3 +34,15 @@ export const MemberThumbButton = styled.button`
 export const MemberItem = styled.li`
   text-align: center;
 `;
+export const CountStyle = styled.span`
+  margin-left: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 14px;
+  background-color: #ff0055;
+  color: #ffffff;
+`;

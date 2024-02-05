@@ -7,7 +7,7 @@
 
 ## 프로젝트 소개
 - react useState, context API, redux 를 활용한 상태 관리
-- url : 준비중
+- url : [바로가기](https://artist-letters-project.vercel.app/)
 
 <br />
 
@@ -31,14 +31,14 @@
 - [x]  팬레터 등록 시 id는 uuid 라이브러리를 이용
 
 ### 선택 요구사항
-- 모달 구현
+- [ ] 모달 구현
     - window.alert 이나 window.conform 대신 직접 구현한 모달을 적용해 봅시다.
 - [x] 만능 버튼 구현(공통 컴포넌트 버튼)
     - 하나의 버튼 컴포넌트를 홈화면과 상세화면 모두에서 적용할 수 있도록 해봅시다.
     - props 로 버튼 크기나 버튼 텍스트 등을 받아봅시다.
 - [x] 새로고침해도 UI 유지
     - 로컬스토리지를 이용해 봅시다.
-- 검색 기능 구현
+- [ ] 검색 기능 구현
     - query string을 적용해 봅시다. (ex. http://localhost:3000?search=에스파)
     - react-router-dom의 useSearchParams를 이용해 보세요.
 
@@ -58,3 +58,91 @@
 <br />
 
 
+## 프로젝트 구조
+
+### redux 브랜치
+- 컴포넌트명styles.js : 컴포넌트 별 styled-component 파일
+```
+artist-letters-project
+├─ .git
+├─ .gitignore
+├─ jsconfig.json
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ favicon.ico
+│  ├─ index.html
+│  ├─ manifest.json
+│  ├─ reset.css
+│  └─ robots.txt
+├─ README.md
+├─ README.old.md
+└─ src
+   ├─ App.jsx
+   ├─ App.test.js
+   ├─ assets
+   │  └─ img
+   │     ├─ projectView.gif
+   │     ├─ thumb1.jpg
+   │     ├─ thumb2.jpg
+   │     ├─ thumb3.jpg
+   │     ├─ thumb4.jpg
+   │     ├─ thumb5.jpg
+   │     ├─ thumb6.jpg
+   │     ├─ thumb7.jpg
+   │     ├─ thumb8.jpg
+   │     ├─ topBanner1.jpg
+   │     ├─ topBanner2.jpg
+   │     ├─ topBanner3.png
+   │     ├─ user-w.png
+   │     └─ user.png
+   ├─ components
+   │  ├─ Button
+   │  │  ├─ Button.jsx
+   │  │  └─ ButtonStyles.js
+   │  ├─ Footer
+   │  │  ├─ Footer.jsx
+   │  │  └─ FooterStyles.js
+   │  ├─ Header
+   │  │  ├─ Header.jsx
+   │  │  └─ HeaderStyles.js
+   │  ├─ Layout
+   │  │  ├─ Layout.jsx
+   │  │  └─ LayoutStyles.js
+   │  ├─ Letter
+   │  │  ├─ EmptyItem.jsx
+   │  │  ├─ LetterItem.jsx
+   │  │  ├─ LetterList.jsx
+   │  │  └─ LetterStyles.js
+   │  ├─ LetterDetail
+   │  │  ├─ LetterContent.jsx
+   │  │  └─ LetterDetailStyles.js
+   │  ├─ LetterForm
+   │  │  ├─ LetterForm.jsx
+   │  │  ├─ LetterFormStyles.js
+   │  │  └─ LetterSelect.jsx
+   │  ├─ Members
+   │  │  ├─ Member.jsx
+   │  │  ├─ MemberList.jsx
+   │  │  └─ MemberStyles.js
+   │  └─ TopBanner
+   │     ├─ TopBanner.jsx
+   │     └─ TopBannerStyles.js
+   ├─ index.js
+   ├─ pages
+   │  ├─ Detail.jsx
+   │  └─ Home.jsx
+   ├─ redux
+   │  ├─ config
+   │  │  └─ configStore.js
+   │  └─ modules
+   │     ├─ letter.js
+   │     └─ member.js
+   ├─ reportWebVitals.js
+   ├─ setupTests.js
+   └─ shared
+      ├─ fakeData.json
+      ├─ memberData.js //아티스트 데이터
+      └─ Router.js
+
+```
