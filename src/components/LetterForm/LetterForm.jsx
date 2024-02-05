@@ -79,7 +79,7 @@ export default function LetterForm() {
     const pushDataArr = data[selected] ? data[selected] : [];
 
     const newDataObj = {
-      createdAt: date.toLocaleString(),
+      createdAt: date,
       nickname: name,
       avatar: userThumb,
       content: contents,

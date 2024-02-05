@@ -1,6 +1,7 @@
 import React from "react";
 import { Letter, LetterContents, LetterDate, LetterTopArea, UserName, UserThumbBox } from "./LetterStyles";
 import { Link } from "react-router-dom";
+import { getFormattedDate } from "util/date";
 
 export default function LetterItem({ data }) {
   return (
@@ -12,7 +13,7 @@ export default function LetterItem({ data }) {
           </UserThumbBox>
           <div>
             <UserName>{data.nickname}</UserName>
-            <LetterDate>{data.createdAt}</LetterDate>
+            <LetterDate>{getFormattedDate(data.createdAt)}</LetterDate>
           </div>
         </LetterTopArea>
         <LetterContents>{data.content}</LetterContents>

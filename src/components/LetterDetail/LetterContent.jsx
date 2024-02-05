@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLetter } from "../../redux/modules/letter";
+import { getFormattedDate } from "util/date";
 
 export default function LetterContent({ data }) {
   const { data: LetterData, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
@@ -113,7 +114,7 @@ export default function LetterContent({ data }) {
         </UserThumb>
         <div>
           <UserName>{data.nickname}</UserName>
-          <LetterDate>{data.createdAt}</LetterDate>
+          <LetterDate>{getFormattedDate(data.createdAt)}</LetterDate>
         </div>
       </LetterTopArea>
       <ArtistInfo>To {data.writedTo}</ArtistInfo>
