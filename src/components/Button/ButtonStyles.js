@@ -21,7 +21,6 @@ export const ButtonBox = styled.div`
 `;
 export const StyledButton = styled.button`
   padding: 5px 10px;
-  display: ${(props) => (props.display === "true" ? "block" : "none")};
   ${(props) => props.$variant};
   color: #fff;
   border-radius: 5px;
