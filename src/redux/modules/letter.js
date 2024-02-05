@@ -1,10 +1,10 @@
 //Action Value
-const ADD_LETTER = "ADD_LETTER";
+const UPDATE_LETTER = "UPDATE_LETTER";
 
 //Action Creator
-export const addLetter = (payload) => {
+export const updateLetter = (payload) => {
   return {
-    type: ADD_LETTER,
+    type: UPDATE_LETTER,
     payload
   };
 };
@@ -21,7 +21,7 @@ const initialState = {
 //리듀서
 const letter = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_LETTER:
+    case UPDATE_LETTER:
       return {
         ...state,
         data: action.payload

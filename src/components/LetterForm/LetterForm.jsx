@@ -6,7 +6,7 @@ import { ButtonBox } from "components/Button/ButtonStyles";
 import Button from "components/Button/Button";
 import userThumb from "../../assets/img/user.png";
 import { useDispatch, useSelector } from "react-redux";
-import { addLetter } from "../../redux/modules/letter";
+import { updateLetter } from "../../redux/modules/letter";
 
 export default function LetterForm() {
   const { data, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
@@ -89,7 +89,7 @@ export default function LetterForm() {
     pushDataArr.push(newDataObj);
     newDataArr[selected] = pushDataArr;
     localStorage.setItem(LOCAL_KEY, JSON.stringify(newDataArr));
-    dispatch(addLetter({ ...newDataArr }));
+    dispatch(updateLetter({ ...newDataArr }));
   };
 
   return (

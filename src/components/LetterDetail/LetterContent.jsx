@@ -4,7 +4,7 @@ import { LetterTextarea } from "components/LetterForm/LetterFormStyles";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { addLetter } from "../../redux/modules/letter";
+import { updateLetter } from "../../redux/modules/letter";
 
 export default function LetterContent({ data }) {
   const { data: LetterData, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
@@ -77,7 +77,7 @@ export default function LetterContent({ data }) {
 
     LetterData[memberId][updateIdx].content = content;
     localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
-    dispatch(addLetter({ ...LetterData }));
+    dispatch(updateLetter({ ...LetterData }));
     setContent(content);
     alert("수정이 완료되었습니다.");
 
@@ -103,7 +103,7 @@ export default function LetterContent({ data }) {
 
       //TODO: localStorage로 삭제하고 메인으로 이동해서 이 화면에서는 렌더링이 되지 않아도 되는데...
       //이 기능은 과연 필요할까
-      dispatch(addLetter({ ...LetterData }));
+      dispatch(updateLetter({ ...LetterData }));
 
       alert("삭제가 완료되었습니다. 메인 화면으로 이동합니다.");
       navigate("/");
