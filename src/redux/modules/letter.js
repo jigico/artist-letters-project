@@ -55,9 +55,15 @@ const letter = (state = initialState, action) => {
         data: state.data
       };
     case ADD_LETTER:
+      const { newDataObj, selected } = action.payload;
+      const newDataArr = state.data;
+      const pushDataArr = state.data[selected] ? state.data[selected] : [];
+      pushDataArr.push(newDataObj);
+      newDataArr[selected] = pushDataArr;
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(newDataArr));
       return {
         ...state,
-        data: action.payload
+        data: { ...newDataArr }
       };
     default:
       return state;
