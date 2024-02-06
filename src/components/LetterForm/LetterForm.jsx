@@ -6,10 +6,9 @@ import { ButtonBox } from "components/Button/ButtonStyles";
 import Button from "components/Button/Button";
 import userThumb from "../../assets/img/user.png";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLetter } from "../../redux/modules/letter";
+import { AddLetter } from "../../redux/modules/letter";
 
 export default function LetterForm() {
-  const { data, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
   const memberData = useSelector((state) => state.member.memberData);
   const dispatch = useDispatch();
 
@@ -46,6 +45,7 @@ export default function LetterForm() {
 
     alert("등록이 완료되었습니다.");
     e.target.reset();
+    setSelected("");
   };
 
   /**
@@ -75,9 +75,6 @@ export default function LetterForm() {
     const date = new Date();
     const artist = findMember();
 
-    const newDataArr = data;
-    const pushDataArr = data[selected] ? data[selected] : [];
-
     const newDataObj = {
       createdAt: date,
       nickname: name,
@@ -86,10 +83,8 @@ export default function LetterForm() {
       writedTo: artist,
       id
     };
-    pushDataArr.push(newDataObj);
-    newDataArr[selected] = pushDataArr;
-    localStorage.setItem(LOCAL_KEY, JSON.stringify(newDataArr));
-    dispatch(updateLetter({ ...newDataArr }));
+
+    dispatch(AddLetter({ newDataObj, selected }));
   };
 
   return (

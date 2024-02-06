@@ -4,11 +4,11 @@ import { LetterTextarea } from "components/LetterForm/LetterFormStyles";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLetter } from "../../redux/modules/letter";
+import { updateLetter, deleteLetter } from "../../redux/modules/letter";
 import { getFormattedDate } from "util/date";
 
 export default function LetterContent({ data }) {
-  const { data: LetterData, localKey: LOCAL_KEY } = useSelector((state) => state.letter);
+  const { data: LetterData } = useSelector((state) => state.letter);
   const memberData = useSelector((state) => state.member.memberData);
   const dispatch = useDispatch();
 
@@ -61,12 +61,7 @@ export default function LetterContent({ data }) {
       }
     });
 
-    let newData = data;
-    newData.content = content;
-
-    LetterData[memberId][updateIdx].content = content;
-    localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
-    dispatch(updateLetter({ ...LetterData }));
+    dispatch(updateLetter({ updateMemberId: memberId, updateIdx, content }));
     setContent(content);
     alert("수정이 완료되었습니다.");
 
@@ -76,7 +71,10 @@ export default function LetterContent({ data }) {
   };
 
   //삭제 기능
-  const deleteLetter = () => {
+  const deleteLetterHandler = () => {
+    const answer = window.confirm("정말 삭제하겠습니까?");
+    if (!answer) return alert("삭제를 취소하였습니다.");
+
     // 삭제할 데이터 id 조회
     const memberId = findMember();
     let deleteIdx = null;
@@ -86,19 +84,11 @@ export default function LetterContent({ data }) {
         deleteIdx = idx;
       }
     });
-    if (window.confirm("정말 삭제하겠습니까?")) {
-      LetterData[memberId].splice(deleteIdx, 1);
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(LetterData));
 
-      //TODO: localStorage로 삭제하고 메인으로 이동해서 이 화면에서는 렌더링이 되지 않아도 되는데...
-      //이 기능은 과연 필요할까
-      dispatch(updateLetter({ ...LetterData }));
+    dispatch(deleteLetter({ memberId, deleteIdx }));
 
-      alert("삭제가 완료되었습니다. 메인 화면으로 이동합니다.");
-      navigate("/");
-    } else {
-      alert("삭제를 취소하였습니다.");
-    }
+    alert("삭제가 완료되었습니다. 메인 화면으로 이동합니다.");
+    navigate("/");
   };
 
   //textarea 에 입력한 값 useState로 관리
@@ -134,7 +124,7 @@ export default function LetterContent({ data }) {
             <Button clickHandler={editTextarea} variant="success">
               수정
             </Button>
-            <Button clickHandler={deleteLetter} variant="danger">
+            <Button clickHandler={deleteLetterHandler} variant="danger">
               삭제
             </Button>
           </>
